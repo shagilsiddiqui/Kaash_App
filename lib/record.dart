@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'dart:io' as io;
 import 'dart:math';
@@ -8,7 +10,9 @@ import 'package:kaash_app/Home.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:rich_alert/rich_alert.dart';
 import 'package:page_transition/page_transition.dart';
-
+import 'package:uuid/uuid.dart';
+final postsRef = Firestore.instance.collection('Recording');
+final DateTime timestamp = DateTime.now();
 
 class record extends StatefulWidget {
   @override
@@ -16,6 +20,7 @@ class record extends StatefulWidget {
 }
 
 class _recordState extends State<record> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +59,32 @@ class AppBody extends StatefulWidget {
 }
 
 class AppBodyState extends State<AppBody> {
+  File file ; 
+   String postId = Uuid().v4();
+   Future<String> uploadImage(imageFile) async {
+     print("UPLOADINGGGGG");
+    StorageUploadTask uploadTask = FirebaseStorage().ref().child("post_$postId.mp4").putFile(imageFile);
+    StorageTaskSnapshot storageSnap = await uploadTask.onComplete;
+    String downloadUrl = await storageSnap.ref.getDownloadURL();
+    return downloadUrl;
+  }
+  createPostInFirestore(
+      {String mediaUrl, String location, String description}) {
+    postsRef
+        .document(postId)
+        .setData({
+      "postId": postId,
+      "mediaUrl": mediaUrl,
+      "timestamp": timestamp,
+    });
+  }
+  handleSubmit() async {
+    print("HAndel SUbmit");
+    String mediaUrl = await uploadImage(file);
+    createPostInFirestore(
+      mediaUrl: mediaUrl,
+    );
+  }
   Recording _recording = new Recording();
   bool _isRecording = false;
   Random random = new Random();
@@ -116,13 +147,16 @@ class AppBodyState extends State<AppBody> {
     var recording = await AudioRecorder.stop();
     print("Stop recording: ${recording.path}");
     bool isRecording = await AudioRecorder.isRecording;
-    File file = widget.localFileSystem.file(recording.path);
+    file = widget.localFileSystem.file(recording.path);
     print("  File length: ${await file.length()}");
     setState(() {
       _recording = recording;
       _isRecording = isRecording;
     });
     _controller.text = recording.path;
+    
+    handleSubmit();
+
 
     showDialog<dynamic>(
         context: context,
