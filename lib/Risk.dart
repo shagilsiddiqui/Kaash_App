@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kaash_app/record.dart';
+import 'package:kaash_app/shared/Data.dart' as global;
 import 'package:kaash_app/shared/colors.dart';
 import 'package:kaash_app/shared/buttons.dart';
 import 'package:page_transition/page_transition.dart';
@@ -47,6 +48,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             onChanged: (SingingCharacter value) {
               setState(() {
                 _character = value;
+                global.Risk='HyperTension';
               });
             },
           ),
@@ -59,6 +61,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             onChanged: (SingingCharacter value) {
               setState(() {
                 _character = value;
+                global.Risk='Diabetes';
               });
             },
           ),
@@ -71,6 +74,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             onChanged: (SingingCharacter value) {
               setState(() {
                 _character = value;
+                global.Risk='None';
               });
             },
           ),

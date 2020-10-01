@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:kaash_app/Risk.dart';
 import 'package:kaash_app/shared/colors.dart';
 import 'package:kaash_app/shared/buttons.dart';
+import 'package:kaash_app/shared/Data.dart' as global;
 import 'package:page_transition/page_transition.dart';
-
 class diseases extends StatefulWidget {
   @override
   _diseasesState createState() => _diseasesState();
@@ -49,6 +49,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               onChanged: (SingingCharacter value) {
                 setState(() {
                   _character = value;
+                  global.Disese='Healthy';
+
                 });
               },
             ),
@@ -61,6 +63,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               onChanged: (SingingCharacter value) {
                 setState(() {
                   _character = value;
+                  global.Disese='Allergy';
+
                 });
               },
             ),
@@ -73,6 +77,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               onChanged: (SingingCharacter value) {
                 setState(() {
                   _character = value;
+                  global.Disese='Asthama';
                 });
               },
             ),
@@ -85,6 +90,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               onChanged: (SingingCharacter value) {
                 setState(() {
                   _character = value;
+                  global.Disese='TB';
                 });
               },
             ),
@@ -97,6 +103,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               onChanged: (SingingCharacter value) {
                 setState(() {
                   _character = value;
+                  global.Disese='CoronaVirus';
                 });
               },
             ),
@@ -109,6 +116,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               onChanged: (SingingCharacter value) {
                 setState(() {
                   _character = value;
+                  global.Disese='pneumonia';
                 });
               },
             ),
@@ -121,6 +129,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               onChanged: (SingingCharacter value) {
                 setState(() {
                   _character = value;
+                  global.Disese='Bronchiectasis';
                 });
               },
             ),
@@ -133,6 +142,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               onChanged: (SingingCharacter value) {
                 setState(() {
                   _character = value;
+                  global.Disese='Bronchitis';
                 });
               },
             ),
@@ -145,6 +155,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               onChanged: (SingingCharacter value) {
                 setState(() {
                   _character = value;
+                  global.Disese='Lung Cancer';
                 });
               },
             ),
@@ -157,6 +168,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               onChanged: (SingingCharacter value) {
                 setState(() {
                   _character = value;
+                  global.Disese='Other';
                 });
               },
             ),

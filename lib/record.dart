@@ -7,6 +7,7 @@ import 'package:audio_recorder/audio_recorder.dart';
 import 'package:file/file.dart';
 import 'package:file/local.dart';
 import 'package:kaash_app/Home.dart';
+import 'package:kaash_app/shared/Data.dart' as global;
 import 'package:path_provider/path_provider.dart';
 import 'package:rich_alert/rich_alert.dart';
 import 'package:page_transition/page_transition.dart';
@@ -50,7 +51,6 @@ class _recordState extends State<record> {
 
 class AppBody extends StatefulWidget {
   final LocalFileSystem localFileSystem;
-
   AppBody({localFileSystem})
       : this.localFileSystem = localFileSystem ?? LocalFileSystem();
 
@@ -68,17 +68,23 @@ class AppBodyState extends State<AppBody> {
     String downloadUrl = await storageSnap.ref.getDownloadURL();
     return downloadUrl;
   }
-  createPostInFirestore(
+  void createPostInFirestore(
       {String mediaUrl, String location, String description}) {
     postsRef
         .document(postId)
         .setData({
+      "Diseases":global.Disese,
+      "Age":global.age,
+      "Gender":global.gender,
+      "Occupation":global.occupation,
+      "Height":global.height,
+      "Other Risk":global.Risk,
       "postId": postId,
       "mediaUrl": mediaUrl,
       "timestamp": timestamp,
     });
   }
-  handleSubmit() async {
+ void handleSubmit() async {
     print("HAndel SUbmit");
     String mediaUrl = await uploadImage(file);
     createPostInFirestore(
@@ -113,7 +119,7 @@ class AppBodyState extends State<AppBody> {
     );
   }
 
-  _start() async {
+  void _start() async {
     try {
       if (await AudioRecorder.hasPermissions) {
         if (_controller.text != null && _controller.text != "") {

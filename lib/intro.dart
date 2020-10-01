@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kaash_app/diseases.dart';
+import 'package:kaash_app/shared/Data.dart';
 import 'package:kaash_app/shared/colors.dart';
 import 'package:kaash_app/shared/styles.dart';
 import 'package:kaash_app/shared/inputFields.dart';
@@ -8,6 +9,7 @@ import 'package:page_transition/page_transition.dart';
 import 'dart:math';
 import 'package:kaash_app/calculations.dart';
 import 'package:kaash_app/result.dart';
+import 'package:kaash_app/shared/Data.dart' as global;
 
 class intro extends StatefulWidget {
   @override
@@ -38,7 +40,9 @@ class _introState extends State<intro> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      fryoTextInput('Age'),
+                      fryoTextInput('Age',onChanged:(String value){setState(() {
+                        global.age=value;
+                      });} ),
 
                 DropdownButton<String>(
                   value: dropdownValue,
@@ -50,9 +54,11 @@ class _introState extends State<intro> {
 //                    height: 2,
 //                    color: Colors.deepPurpleAccent,
 //                  ),
+
                   onChanged: (String newValue) {
                     setState(() {
                       dropdownValue = newValue;
+                      global.gender=newValue;
                     });
                   },
                   items: <String>['Male', 'Female', 'Transgender']
@@ -60,17 +66,24 @@ class _introState extends State<intro> {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
+
                     );
                   }).toList(),
                 ),
-                      fryoTextInput('Occupation'),
+                      fryoTextInput('Occupation',onChanged:(String value){occupation=value;} ),
                       fryoTextInput('Height(in cm)',onChanged: (String value){
                         setState(() {
                           height=value;
+                          global.height=value;
+
                         });
                       }),
                       fryoTextInput('Weight(in Kg)',onChanged: (String value){
-                        weight=value;
+                        setState(() {
+                          weight=value;
+                          global.weight=value;
+                        });
+
                       }),
                       SizedBox(
                         height: 10.0,

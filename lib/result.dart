@@ -1,7 +1,9 @@
 import 'package:kaash_app/diseases.dart';
 import 'package:kaash_app/reduceCard.dart';
 import 'package:flutter/material.dart';
+import 'package:kaash_app/shared/Data.dart';
 import 'package:kaash_app/shared/buttons.dart';
+import 'package:kaash_app/shared/Data.dart';
 import 'package:page_transition/page_transition.dart';
 class result extends StatelessWidget {
   final String bmiResult;
@@ -9,6 +11,7 @@ class result extends StatelessWidget {
   final String interpretation;
   result({this.bmiResult,this.resultText,this.interpretation});
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('RESULT'),
