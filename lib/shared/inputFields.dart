@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import './colors.dart';
 import './styles.dart';
 
@@ -8,6 +9,7 @@ Container fryoTextInput(String hintText,
     margin: EdgeInsets.only(top: 13),
     child: TextField(
       onTap: onTap,
+      keyboardType: TextInputType.number,
       onChanged: onChanged,
       onEditingComplete: onEditingComplete,
       onSubmitted: onSubmitted,
@@ -32,7 +34,6 @@ Container fryoEmailInput(String hintText,
       onChanged: onChanged,
       onEditingComplete: onEditingComplete,
       onSubmitted: onSubmitted,
-      keyboardType: TextInputType.emailAddress,
       cursorColor: primaryColor,
       style: inputFieldTextStyle,
       decoration: InputDecoration(

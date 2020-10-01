@@ -70,7 +70,7 @@ class _introState extends State<intro> {
                     );
                   }).toList(),
                 ),
-                      fryoTextInput('Occupation',onChanged:(String value){occupation=value;} ),
+                      fryoEmailInput('Occupation',onChanged:(String value){occupation=value;} ),
                       fryoTextInput('Height(in cm)',onChanged: (String value){
                         setState(() {
                           height=value;
